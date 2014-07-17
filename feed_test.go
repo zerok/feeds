@@ -16,7 +16,7 @@ var atomOutput = `<?xml version="1.0" encoding="UTF-8"?><feed xmlns="http://www.
     <name>Jason Moiron</name>
     <email>jmoiron@jmoiron.net</email>
   </author>
-  <entry>
+  <entry xml:base="http://jmoiron.net/blog/limiting-concurrency-in-go/">
     <title>Limiting Concurrency in Go</title>
     <updated>2013-01-16T21:52:35-05:00</updated>
     <id>tag:jmoiron.net,2013-01-16:/blog/limiting-concurrency-in-go/</id>
@@ -97,6 +97,7 @@ func TestFeed(t *testing.T) {
 			Description: "A discussion on controlled parallelism in golang",
 			Author:      &Author{"Jason Moiron", "jmoiron@jmoiron.net"},
 			Created:     now,
+			BaseUrl:     "http://jmoiron.net/blog/limiting-concurrency-in-go/",
 		},
 		&Item{
 			Title:       "Logic-less Template Redux",

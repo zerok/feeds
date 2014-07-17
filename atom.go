@@ -42,6 +42,7 @@ type AtomContributor struct {
 type AtomEntry struct {
 	XMLName     xml.Name `xml:"entry"`
 	Xmlns       string   `xml:"xmlns,attr,omitempty"`
+	Xmlbase     string   `xml:"xml:base,attr,omitempty"`
 	Title       string   `xml:"title"`   // required
 	Updated     string   `xml:"updated"` // required
 	Id          string   `xml:"id"`      // required
@@ -74,7 +75,7 @@ type AtomFeed struct {
 	Rights      string   `xml:"rights,omitempty"` // copyright used
 	Subtitle    string   `xml:"subtitle,omitempty"`
 	Link        *AtomLink
-	Author      *AtomAuthor // required 
+	Author      *AtomAuthor // required
 	Contributor *AtomContributor
 	Entries     []*AtomEntry
 }
@@ -112,6 +113,7 @@ func newAtomEntry(i *Item) *AtomEntry {
 		Content: c,
 		Id:      id,
 		Updated: anyTimeFormat(time.RFC3339, i.Updated, i.Created),
+		Xmlbase: i.BaseUrl,
 	}
 	if len(name) > 0 || len(email) > 0 {
 		x.Author = &AtomAuthor{AtomPerson: AtomPerson{Name: name, Email: email}}
